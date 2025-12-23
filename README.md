@@ -1,6 +1,6 @@
 # Infosec Task 2
 
-This repository contains structured writeups for the Linux Luminarium track on pwn.college.
+This repository contains  writeups for the Linux Luminarium track on pwn.college.
 
 The writeups cover the following modules:
 - Hello Hackers
