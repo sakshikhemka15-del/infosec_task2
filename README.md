@@ -8,4 +8,4 @@ The writeups cover the following modules:
 - Comprehending Commands
 - Digesting Documentation
 
-It also includes explanations of core infosec concepts such as Encryption vs Encoding and the Principle of Least Privilege.
+It also includes explanations of  infosec concepts such as Encryption vs Encoding and the Principle of Least Privilege.
