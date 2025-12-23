@@ -311,3 +311,147 @@ pwn.college{sWxgey03euHtnlgutd56Rb9WhjK.0lNxQTMywyN2MDM1EzW}
 ```bash
 pwn.college{sWxgey03euHtnlgutd56Rb9WhjK.0lNxQTMywyN2MDM1EzW}
 ```
+### Challenge: Hidden Files
+
+**Task:**
+
+The goal of this challenge was to locate a hidden flag file in the root directory. The flag file was hidden using a dot (.) prefix, so it would not appear with normal directory listing commands.
+
+**Commands Used:**
+
+```bash
+ssh hacker@dojo.pwn.college
+ls /
+ls -a /
+cat /.flag-32048318421699
+```
+**Explanation:**
+
+By default, the ls command does not display hidden files, which are files whose names start with a dot (.). After listing the root directory and not seeing the flag, I used ls -a / to show all files, including hidden ones. This revealed the hidden flag file. I then used cat with the file’s absolute path to read its contents.
+
+**Output/Flag:**
+```bash
+pwn.college{EyCNb6upYoYiu0-KuxMLK4oQpHV.QXwUDO0wyN2MDM1EzW}
+```
+### Challenge: An Epic Filesystem Quest
+
+**Task:**
+
+The objective of this challenge was to navigate a series of directories following hidden clues to ultimately find a flag. The challenge contains basic Linux commands: cd for changing directories, ls for listing contents (including hidden files), and cat for reading file contents.
+
+**Commands Used:**
+
+```bash
+cd /
+ls
+cat SECRET
+cd /usr/share/games/fortunes
+ls
+cat SPOILER
+cd /usr/lib/python3/dist-packages/twisted/internet/iocpreactor/__pycache__
+ls
+cat DOSSIER
+cd /usr/share/m17n/icons
+ls -a
+cat .EVIDENCE
+cd /usr/lib/python3/dist-packages/sage/combinat/matrices/__pycache__
+ls
+cat LEAD
+cd /usr/share/racket/pkgs/plot-gui-lib/plot/private/gui/compiled
+ls
+cat DISPATCH
+cd /opt/linux/linux-5.4/include/dt-bindings/leds
+ls
+cat README
+cat /usr/local/lib/python3.8/dist-packages/numpy/random/_examples/cffi
+ls /usr/local/lib/python3.8/dist-packages/numpy/random/_examples/cffi
+cat /usr/local/lib/python3.8/dist-packages/numpy/random/_examples/cffi/TIP-TRAPPED
+cd /usr/lib/x86_64-linux-gnu/gio
+ls -a
+cat .BLUEPRINT
+
+```
+
+
+**Output/Flag:**
+```bash
+pwn.college{MBNN2trCGlzR6FxaFDRBPl_e7Dv.QX5IDO0wyN2MDM1EzW}
+```
+### Challenge: Making Directories
+
+**Task:**
+
+The goal of this challenge was to create a directory named pwn inside /tmp, place a file named college in it, and then run /challenge/run to obtain the flag. This introduces the mkdir command for creating directories and demonstrates organizing files within them.
+
+**Commands Used:**
+
+```bash
+cd /tmp
+mkdir pwn
+cd /tmp/pwn
+touch college
+/challenge/run
+
+```
+**Explanation:**
+
+The mkdir command was used to create a new directory pwn in /tmp. After entering the directory with cd, the touch command created an empty file named college then  verification script was then executed to confirm the copy operation and reveal the flag .
+
+**Output:**
+```bash
+Success! Here is your flag:
+pwn.college{8Ox5OHEm5vrBf21RTjzzINiJYVK.QXxMDO0wyN2MDM1EzW}
+```
+**Flag:**
+```bash
+pwn.college{8Ox5OHEm5vrBf21RTjzzINiJYVK.QXxMDO0wyN2MDM1EzW}
+```
+### Challenge: Finding Files
+
+**Task:**
+
+The goal of this challenge was to locate a hidden flag somewhere on the filesystem. This introduces the find command, which allows searching for files and directories based on name, type, or other criteria.
+**Commands Used:**
+
+```bash
+ssh hacker@dojo.pwn.college
+find / -name flag
+cat  /usr/local/lib/python3.8/dist-packages/pwnlib/flag
+cat /usr/share/racket/pkgs/macro-debugger-text-lib/macro-debugger/analysis/private/flag
+
+```
+**Output/Flag:**
+```bash
+pwn.college{0LWA7EwTllcWWQZnm2RfL8g733b.QXyMDO0wyN2MDM1EzW}
+```
+
+### Challenge: Linking Files
+
+**Task:**
+
+In this challenge, the flag is stored in /flag, but the provided program /challenge/catflag does not read it directly. Instead, the program always attempts to read the file located at /home/hacker/not-the-flag.The task is to use symbolic links to redirect the program to the real flag without modifying the program itself.
+
+**Commands Used:**
+
+```bash
+ssh hacker@dojo.pwn.college
+ln -s /challenge/catflag /home/hacker/not-the-flag
+cat /home/hacker/not-the-flag
+cat /challenge/catflag
+
+rm /home/hacker/not-the-flag
+ln -s /flag /home/hacker/not-the-flag
+/challenge/catflag
+
+```
+**Explanation:**
+
+Initially, I created a symbolic link that pointed /home/hacker/not-the-flag to /challenge/catflag. This was a wrong approach because /challenge/catflag is a script that always tries to read /home/hacker/not-the-flag. Linking the script to itself caused it to loop without ever accessing the real flag.
+
+ I realized that the correct approach was to replace /home/hacker/not-the-flag with a symbolic link pointing directly to /flag. Since /challenge/catflag blindly reads /home/hacker/not-the-flag, it followed the symlink and ended up reading /flag instead.
+
+**Output/Flag:**
+```bash
+pwn.college{YzUqCNyW9P8LKlmsw4f0ZRxWTHt.QX5ETN1wyN2MDM1EzW}
+```
+
