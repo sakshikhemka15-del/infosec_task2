@@ -1,4 +1,4 @@
-# Infosec Task 2 – Linux Luminarium
+# Infosec Task 2
 
 This repository contains structured writeups for the Linux Luminarium track on pwn.college.
 
