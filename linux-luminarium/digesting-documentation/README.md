@@ -159,23 +159,20 @@ When a program doesn't have a man page, the --help flag is the primary way to di
 
 **Task:**
 
-The objective of this challenge was to learn how to use a program’s built‑in help documentation (--help) to understand its available options, identify the correct usage, and execute the program properly to retrieve the flag.
+The objective of this challenge was to recognize that the challenge command is a shell builtin, not an external program, and to use the shell’s help system to find the correct arguments needed to retrieve the flag.
 
 **Commands Used:**
 
 ```bash
 ssh hacker@dojo.pwn.college
-/challenge/challenge --help
-/challenge/challenge -g
-/challenge/challenge -p
-/challenge/challenge -g 953
-
+help challenge
+challenge --secret AyFyv5e6
 
 ```
 
 **Explanation:**
 
-When a program doesn't have a man page, the --help flag is the primary way to discover its functionality. By running the help command, I found that the program required a specific "secret value" passed via the -g flag. I used the -p (print-value) argument to reveal that the secret number was 953. Finally, executing the program with -g 953 validated the provided the flag.
+By executing help challenge, I was able to read the documentation for this specific builtin and identify that it required the --secret flag followed by a specific value: AyFyv5e6. Providing this value allowed the shell to process the builtin command successfully and display the flag.
 
 **Output/Flag:**
 ```bash
