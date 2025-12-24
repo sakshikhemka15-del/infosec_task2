@@ -42,7 +42,7 @@ pwn.college{Q6eV3wAV1cMzJkmSpwiZJWiPdbq.QX3YjM1wyN2MDM1EzW}
 **Task:**
 
 This challenge focuses on understanding how Linux commands take arguments and how the shell interprets user input.
----
+
 
 **Commands Used:**
 
